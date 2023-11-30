@@ -1,0 +1,57 @@
+<div>
+    <a href="#default">Back to Accounts</a>
+</div>
+
+<q2-select label="Currency" name="currency">
+    {% for currency in currency_options %}
+        {% if currency == current_selected_currency %}
+            <q2-option value="{{currency}}" display="{{currency}}" selected>{{currency}}</q2-option>
+        {% else %}
+            <q2-option value="{{currency}}" display="{{currency}}">{{currency}}</q2-option>
+        {% endif %}
+    {% endfor %}
+</q2-select>
+
+<input id="hidden_account_id_storage" name="account_id" value="{{current_account_id}}" type="hidden">
+
+<div>
+    <a href="#submit">Convert Currency</a>
+</div>
+<div id="placeholder-converted-values">
+
+</div>
+<div class="table-wrapper">
+    <table>
+    <thead>
+        <tr>
+        <th width="100">
+            Date
+        </th>
+        <th>
+            Description
+        </th>
+        <th class="text-right">
+            Amount
+        </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in transactions %}
+            <tr>
+                <td>{{transaction.display_date}}</td>
+                <td>{{transaction.display_description}}</td>
+                {% if transaction.is_credit %}
+                    <td class="text-right clr(const-stoplight-success)">+{{transaction.display_amount}} {{current_selected_currency}}</td>
+                {% else %}
+                    <td class="text-right">-{{transaction.display_amount}} {{current_selected_currency}}</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <script>
+        window.tecton.connected.then(function() {
+            document.querySelector('q2-select').value = '{{current_selected_currency}}';
+        });
+    </script>
+</div>

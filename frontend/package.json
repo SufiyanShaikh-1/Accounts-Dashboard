@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "test": "echo Frontend testing not configured",
+    "test-cov": "echo Frontend testing coverage not configured",
+    "lint": "echo Frontend linting not configured",
+
+    "build": "rm -rf dist && mkdir dist && cp -r public/. dist/"
+  }
+}

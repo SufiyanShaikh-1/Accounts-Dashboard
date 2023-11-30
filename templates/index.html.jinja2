@@ -1,0 +1,76 @@
+<style>
+    .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0px;
+    font-size: 1.2em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table thead tr {
+    background-color: #009a36;
+    color: #ffffff;
+    text-align: left;
+}
+.styled-table th,
+.styled-table td {
+    padding: 15px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #61ffda;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #dddddd;
+}
+
+.table-wrapper {
+    margin-left: 10em;
+}
+
+</style>
+<div class="table-wrapper">
+    <table class="styled-table">
+    <thead>
+        <tr>
+        <th width="150">
+            Account number
+        </th>
+        <th width="200">
+           Account Name
+        </th>
+        <th width="150">
+           Account Type
+        </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for account in accounts %}
+            <tr>
+                <td>{{ account['accountNumber'] }}</td>
+                <td>{{ account['accountName'] }}</td>
+                <td>{{ account['accountType'] }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</div>
+{# <q2-input
+        name='account_id'
+        id='account_id'
+        label="Account ID">
+</q2-input> #}
